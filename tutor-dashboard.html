@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutor Dashboard</title>
+  <link rel="stylesheet" href="tutor-dashboard.css" />
+  <script>
+    window.onload = function () {
+      const tutorProfile = JSON.parse(localStorage.getItem('tutorProfile'));
+      if (tutorProfile) {
+        const firstName = tutorProfile.name.split(' ')[0];
+        document.getElementById('greeting').innerHTML = `Welcome, ${firstName.toUpperCase()}!`;
+        document.getElementById('tutor-email').innerHTML = `Email: ${tutorProfile.email}`;
+        document.getElementById('tutor-age').innerHTML = `Age: ${tutorProfile.age}`;
+        document.getElementById('tutor-subjects').innerHTML = `Subjects: ${tutorProfile.subjects}`;
+      } else {
+        alert('No tutor profile found!');
+        window.location.href = 'join-tutor.html'; // Redirect to profile creation page if no profile found
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">LearnSphere</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="join-learner.html">Join as Learner</a></li>
+        <li><a href="join-tutor.html">Join as Tutor</a></li>
+      </ul>
+    </nav>
+    <div class="nav-buttons">
+      <a href="index.html" class="btn-logout">Logout</a>
+    </div>
+  </header>
+
+  <!-- Tutor Dashboard Content -->
+  <section class="dashboard">
+    <div class="dashboard-content">
+      <!-- Tutor Profile -->
+      <div class="profile">
+        <h2 id="greeting">Welcome, [Name]!</h2>
+        <div class="profile-info">
+          <p id="tutor-email">Email:</p>
+          <p id="tutor-age">Age:</p>
+          <p id="tutor-subjects">Subjects:</p>
+        </div>
+      </div>
+
+      <h3>Your Courses</h3>
+      <div class="courses">
+        <div class="course-card">
+          <h4>Frontend Web Development</h4>
+          <p>Teach the basics of HTML, CSS, and JavaScript to help students build websites.</p>
+          <button class="manage-btn">Manage</button>
+        </div>
+        <div class="course-card">
+          <h4>Backend Web Development</h4>
+          <p>Guide students to build server-side applications using Python and Node.js.</p>
+          <button class="manage-btn">Manage</button>
+        </div>
+        <div class="course-card">
+          <h4>Data Science and AI</h4>
+          <p>Mentor students on Data Science and Artificial Intelligence using Python.</p>
+          <button class="manage-btn">Manage</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar for Modules -->
+    <div class="sidebar">
+      <h3>Modules</h3>
+      <ul>
+        <li><a href="#">Course Management</a></li>
+        <li><a href="#">Student Feedback</a></li>
+        <li><a href="#">Assignments</a></li>
+        <li><a href="#">Progress Tracker</a></li>
+        <li><a href="#">Forum</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

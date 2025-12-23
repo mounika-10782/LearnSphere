@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Learner Profile</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // JavaScript function to handle form submission
+    function submitForm(event) {
+      event.preventDefault();  // Prevent the form from submitting to the server
+
+      // Get form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const age = document.getElementById('age').value;
+      const interest = document.getElementById('interest').value;
+
+      // You can perform validation here
+      if (name && email && password && age && interest) {
+        // Save form data to localStorage to retain data on page reload
+        localStorage.setItem('learnerProfile', JSON.stringify({ name, email, password, age, interest }));
+
+        // Redirect to learner dashboard (You can replace this with tutor-dashboard.html if needed)
+        window.location.href = "learner-dashboard.html";
+      } else {
+        // If form is invalid, show error message
+        alert('Please fill in all fields.');
+      }
+    }
+
+    // Function to load stored data (if available) into the form fields
+    function loadProfileData() {
+      const storedData = JSON.parse(localStorage.getItem('learnerProfile'));
+      if (storedData) {
+        document.getElementById('name').value = storedData.name || '';
+        document.getElementById('email').value = storedData.email || '';
+        document.getElementById('password').value = storedData.password || '';
+        document.getElementById('age').value = storedData.age || '';
+        document.getElementById('interest').value = storedData.interest || '';
+      }
+    }
+
+    // Load data when the page is loaded
+    window.onload = loadProfileData;
+  </script>
+</head>
+<body class="form-page">
+  <div class="form-container">
+    <h2>Create Your Learner Profile</h2>
+    <form id="learnerForm" onsubmit="submitForm(event)">
+      <label>Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label>Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label>Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <label>Age</label>
+      <input type="number" id="age" name="age" min="5" max="100" required>
+
+      <label>Area of Interest</label>
+      <input type="text" id="interest" name="interest" required>
+
+      <button type="submit">Create Profile</button>
+    </form>
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+  <!-- Success Modal (Optional) -->
+  <div class="success-modal" id="successModal">
+    <div class="success-modal-content">
+      <div class="checkmark">&#10004;</div>
+      <h2>Profile Created Successfully!</h2>
+      <button onclick="window.location.href = 'learner-dashboard.html';">Go to Dashboard</button>
+    </div>
+  </div>
+
+  <!-- External JS and CSS -->
+  <script src="script.js"></script>
+</body>
+</html>

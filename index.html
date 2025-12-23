@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LearnSphere - Create Profile</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Function to save Learner Profile
+    function saveLearnerProfile() {
+      const name = document.getElementById('learner-name').value;
+      const email = document.getElementById('learner-email').value;
+      const age = document.getElementById('learner-age').value;
+      const interest = document.getElementById('learner-interest').value;
+
+      const learnerProfile = {
+        name: name,
+        email: email,
+        age: age,
+        interest: interest
+      };
+      localStorage.setItem('learnerProfile', JSON.stringify(learnerProfile));
+
+      // Redirect to Learner Dashboard
+      window.location.href = 'learner-dashboard.html';
+    }
+
+    // Function to save Tutor Profile
+    function saveTutorProfile() {
+      const name = document.getElementById('tutor-name').value;
+      const email = document.getElementById('tutor-email').value;
+      const age = document.getElementById('tutor-age').value;
+      const subjects = document.getElementById('tutor-subjects').value;
+
+      const tutorProfile = {
+        name: name,
+        email: email,
+        age: age,
+        subjects: subjects
+      };
+      localStorage.setItem('tutorProfile', JSON.stringify(tutorProfile));
+
+      // Redirect to Tutor Dashboard
+      window.location.href = 'tutor-dashboard.html';
+    }
+
+    // Function to open the success modal after profile creation
+    function openModal() {
+      document.getElementById('successModal').style.display = 'block';
+    }
+
+    // Function to close the success modal and redirect
+    function closeModal() {
+      document.getElementById('successModal').style.display = 'none';
+      window.location.href = 'index.html';
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">LearnSphere</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="#">For Learners</a></li>
+        <li><a href="#">For Tutors</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="nav-buttons">
+      <a href="join-learner.html" class="btn-outline">Join as Learner</a>
+      <a href="join-tutor.html" class="btn-filled">Join as Tutor</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="hero-text">
+        <h1>Welcome to <span class="highlight">LearnSphere</span> Platform!</h1>
+        <p>
+          Experience a new way of learning and teaching with LearnSphere.
+          Our innovative virtual classroom platform connects learners and tutors
+          in an interactive online environment. Join us today!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Select Role to Create Profile -->
+  <section class="role-selection">
+    <h2>Select Your Role</h2>
+    <button onclick="document.getElementById('learnerForm').style.display = 'block'; document.getElementById('tutorForm').style.display = 'none';">Join as Learner</button>
+    <button onclick="document.getElementById('tutorForm').style.display = 'block'; document.getElementById('learnerForm').style.display = 'none';">Join as Tutor</button>
+  </section>
+
+  <!-- Learner Profile Creation Form -->
+  <section id="learnerForm" class="profile-creation" style="display: none;">
+    <h1>Create Your Learner Profile</h1>
+    <form onsubmit="event.preventDefault(); saveLearnerProfile();">
+      <label for="learner-name">Name:</label>
+      <input type="text" id="learner-name" required />
+
+      <label for="learner-email">Email:</label>
+      <input type="email" id="learner-email" required />
+
+      <label for="learner-age">Age:</label>
+      <input type="number" id="learner-age" required />
+
+      <label for="learner-interest">Interest:</label>
+      <input type="text" id="learner-interest" required />
+
+      <button type="submit">Create Profile</button>
+    </form>
+  </section>
+
+  <!-- Tutor Profile Creation Form -->
+  <section id="tutorForm" class="profile-creation" style="display: none;">
+    <h1>Create Your Tutor Profile</h1>
+    <form onsubmit="event.preventDefault(); saveTutorProfile();">
+      <label for="tutor-name">Name:</label>
+      <input type="text" id="tutor-name" required />
+
+      <label for="tutor-email">Email:</label>
+      <input type="email" id="tutor-email" required />
+
+      <label for="tutor-age">Age:</label>
+      <input type="number" id="tutor-age" required />
+
+      <label for="tutor-subjects">Subjects you teach:</label>
+      <input type="text" id="tutor-subjects" required />
+
+      <button type="submit">Create Profile</button>
+    </form>
+  </section>
+
+  <!-- Success Modal -->
+  <div class="success-modal" id="successModal" style="display: none;">
+    <div class="success-modal-content">
+      <h2>Profile Created Successfully!</h2>
+      <p>Your profile has been created successfully. You can now access your dashboard and start your journey.</p>
+      <button onclick="closeModal()">OK</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

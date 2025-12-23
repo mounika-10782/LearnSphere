@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LearnSphere - Join as Tutor</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Function to save tutor profile and redirect to Tutor Dashboard
+    function saveTutorProfile() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const age = document.getElementById('age').value;
+      const subjects = document.getElementById('subjects').value;
+
+      // Save the tutor profile in localStorage
+      const tutorProfile = {
+        name: name,
+        email: email,
+        age: age,
+        subjects: subjects
+      };
+      localStorage.setItem('tutorProfile', JSON.stringify(tutorProfile));
+
+      // Redirect to the tutor dashboard after successful profile creation
+      window.location.href = 'tutor-dashboard.html';
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">LearnSphere</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="#">For Learners</a></li>
+        <li><a href="#">For Tutors</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="nav-buttons">
+      <a href="join-learner.html" class="btn-outline">Join as Learner</a>
+      <a href="join-tutor.html" class="btn-filled">Join as Tutor</a>
+    </div>
+  </header>
+
+  <!-- Profile Creation Form -->
+  <section class="profile-creation">
+    <h1>Create Your Tutor Profile</h1>
+    <form onsubmit="event.preventDefault(); saveTutorProfile();">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" required />
+
+      <label for="subjects">Subjects you can teach:</label>
+      <input type="text" id="subjects" required />
+
+      <button type="submit">Create Profile</button>
+    </form>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learner Dashboard</title>
+  <link rel="stylesheet" href="learner-dashboard.css" />
+  <script>
+    // JavaScript to load learner profile data from localStorage
+    window.onload = function () {
+      const learnerProfile = JSON.parse(localStorage.getItem('learnerProfile'));
+      if (learnerProfile) {
+        const firstName = learnerProfile.name.split(' ')[0];
+        document.getElementById('greeting').innerHTML = `Hey, ${firstName.toUpperCase()}!`;
+        document.getElementById('learner-email').innerHTML = `Email: ${learnerProfile.email}`;
+        document.getElementById('learner-age').innerHTML = `Age: ${learnerProfile.age}`;
+        document.getElementById('learner-interest').innerHTML = `Interest: ${learnerProfile.interest}`;
+      } else {
+        alert('No learner profile found!');
+        window.location.href = 'index.html';
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">📘 <span class="logo-text">LearnSphere</span></div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="join-learner.html">Join as Learner</a></li>
+        <li><a href="join-tutor.html">Join as Tutor</a></li>
+      </ul>
+    </nav>
+    <div class="nav-buttons">
+      <a href="index.html" class="btn-logout">Logout</a>
+    </div>
+  </header>
+
+  <!-- Learner Dashboard Content -->
+  <section class="dashboard">
+    <div class="dashboard-content">
+      <!-- Learner Profile -->
+      <div class="profile">
+        <h2 id="greeting">Hey, [Name]!</h2>
+        <div class="profile-info">
+          <p id="learner-email">Email:</p>
+          <p id="learner-age">Age:</p>
+          <p id="learner-interest">Interest:</p>
+        </div>
+      </div>
+
+      <h3>Available Courses</h3>
+      <div class="courses">
+        <div class="course-card">
+          <h4>Frontend Web Development</h4>
+          <p>Learn the basics of HTML, CSS, and JavaScript to build interactive websites.</p>
+          <button class="enroll-btn">Enroll Now</button>
+        </div>
+        <div class="course-card">
+          <h4>Backend Web Development</h4>
+          <p>Learn how to build server-side applications using Python, Node.js, and more.</p>
+          <button class="enroll-btn">Enroll Now</button>
+        </div>
+        <div class="course-card">
+          <h4>Data Science and AI</h4>
+          <p>Learn the fundamentals of Data Science and Artificial Intelligence with Python.</p>
+          <button class="enroll-btn">Enroll Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar for Modules -->
+    <div class="sidebar">
+      <h3>Modules</h3>
+      <ul>
+        <li><a href="#">Marks & Grades</a></li>
+        <li><a href="#">Progress Tracker</a></li>
+        <li><a href="#">Assignments</a></li>
+        <li><a href="#">Quizzes</a></li>
+        <li><a href="#">Certificates</a></li>
+        <li><a href="#">Forum</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
